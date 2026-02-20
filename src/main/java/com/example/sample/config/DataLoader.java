@@ -2,6 +2,8 @@ package com.example.sample.config;
 
 import com.example.sample.entity.Item;
 import com.example.sample.repository.ItemRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -9,6 +11,8 @@ import java.util.List;
 
 @Component
 public class DataLoader implements CommandLineRunner {
+
+    private static final Logger log = LoggerFactory.getLogger(DataLoader.class);
 
     private final ItemRepository itemRepository;
 
@@ -18,9 +22,12 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+        log.info("[Step] 샘플 데이터 로드 검사 시작");
         if (itemRepository.count() > 0) {
+            log.info("[Step] 기존 데이터 존재 (count={}), 샘플 데이터 로드 스킵", itemRepository.count());
             return;
         }
+        log.info("[Step] 샘플 데이터 등록 시작");
         List<Item> samples = List.of(
                 new Item("노트북", "업무용 노트북", 3),
                 new Item("마우스", "무선 마우스", 10),
@@ -34,5 +41,6 @@ public class DataLoader implements CommandLineRunner {
                 new Item("책받침", "목각 책받침", 7)
         );
         itemRepository.saveAll(samples);
+        log.info("[Step] 샘플 데이터 등록 완료 (count={})", samples.size());
     }
 }
