@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title th:text="${pageTitle} ?: 'Item CRUD'">Item CRUD</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<header>
+    <nav>
+        <a th:href="@{/items}" class="brand">kimhchul-sample-20260220</a>
+        <a th:href="@{/items}">목록</a>
+        <a th:href="@{/items/new}">등록</a>
+    </nav>
+</header>
+<main>
+    <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+    <div th:if="${error}" class="alert alert-error" th:text="${error}"></div>
+    <th:block th:replace="${content}"/>
+</main>
+<footer>
+    <p>Spring Boot + H2 CRUD Sample</p>
+</footer>
+</body>
+</html>

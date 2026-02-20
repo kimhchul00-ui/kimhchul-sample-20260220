@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::content})}">
+<head>
+    <title>항목 상세</title>
+</head>
+<body>
+<th:block th:fragment="content">
+    <h1>항목 상세</h1>
+    <dl class="detail">
+        <dt>ID</dt>
+        <dd th:text="${item.id}"></dd>
+        <dt>이름</dt>
+        <dd th:text="${item.name}"></dd>
+        <dt>설명</dt>
+        <dd th:text="${item.description} ?: '-'"></dd>
+        <dt>수량</dt>
+        <dd th:text="${item.quantity}"></dd>
+    </dl>
+    <div class="form-actions">
+        <a th:href="@{/items/{id}/edit(id=${item.id})}" class="btn btn-primary">수정</a>
+        <form th:action="@{/items/{id}/delete(id=${item.id})}" method="post" style="display:inline;"
+              onsubmit="return confirm('삭제할까요?');">
+            <button type="submit" class="btn btn-danger">삭제</button>
+        </form>
+        <a th:href="@{/items}" class="btn">목록</a>
+    </div>
+</th:block>
+</body>
+</html>

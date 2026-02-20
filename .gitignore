@@ -1,0 +1,30 @@
+# Build
+target/
+!.mvn/wrapper/maven-wrapper.jar
+build/
+out/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Spring Boot
+application-local.properties
+application-dev.properties
+
+# Maven wrapper (optional: include if you add mvnw)
+# !.mvn/wrapper/maven-wrapper.jar
